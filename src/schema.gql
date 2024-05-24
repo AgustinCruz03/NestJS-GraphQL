@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type User {
-  id: Int!
+  id: String!
   username: String!
   email: String!
   password: String!
@@ -12,4 +12,15 @@ type User {
 
 type Query {
   users: [User!]!
+}
+
+type Mutation {
+  createUser(user: UserDto!): User!
+}
+
+input UserDto {
+  username: String! = "4b4f798d-d53d-46db-b254-2a43c849cb80"
+  email: String!
+  password: String!
+  age: Int
 }

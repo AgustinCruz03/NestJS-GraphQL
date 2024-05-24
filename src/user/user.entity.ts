@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 export class User {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @PrimaryGeneratedColumn('uuid')
-  @Field((type) => Int)
+  @Field()
   id: string = uuid();
 
   @Column()
