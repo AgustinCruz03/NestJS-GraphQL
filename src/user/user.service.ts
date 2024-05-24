@@ -15,6 +15,9 @@ export class UserService {
       ({ password, ...usuarioSinPassword }) => usuarioSinPassword,
     );
   }
+  async getUserByID(id: string) {
+    return await this.userRepository.findOne({ where: { id } });
+  }
   async createUser(user: UserDto): Promise<User> {
     const newUser = this.userRepository.create(user);
     return await this.userRepository.save(newUser);

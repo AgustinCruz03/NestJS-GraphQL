@@ -1,14 +1,30 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { v4 as uuid } from 'uuid';
+import {
+  IsEmail,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 
 @InputType()
 export class UserDto {
+  @MaxLength(20)
+  @IsString()
+  @IsNotEmpty()
   @Field()
-  username: string = uuid();
+  username: string;
+  @IsEmail()
+  @IsNotEmpty()
   @Field()
   email: string;
+  @IsString()
+  @IsNotEmpty()
   @Field()
   password: string;
+  @IsInt()
+  @IsOptional()
   @Field((type) => Int, { nullable: true })
   age?: number;
 }
