@@ -2,21 +2,35 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Post {
+  id: String!
+  title: String!
+  description: String!
+  userId: String!
+  user: User!
+}
+
 type User {
   id: String!
   username: String!
   email: String!
   password: String!
   age: Int
+  post: [Post!]
 }
 
 type Query {
   users: [User!]!
   user(id: String!): User!
+  posts: [Post!]!
+  post(id: Int!): Post!
 }
 
 type Mutation {
   createUser(user: UserDto!): User!
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post!
 }
 
 input UserDto {
@@ -24,4 +38,17 @@ input UserDto {
   email: String!
   password: String!
   age: Int
+}
+
+input CreatePostInput {
+  title: String!
+  description: String!
+  userId: String!
+}
+
+input UpdatePostInput {
+  title: String
+  description: String
+  userId: String
+  id: Int!
 }
