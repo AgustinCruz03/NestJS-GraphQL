@@ -28,6 +28,7 @@ type Query {
 
 type Mutation {
   createUser(user: UserDto!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(updatePostInput: UpdatePostInput!): Post!
   removePost(id: String!): Post!
@@ -38,6 +39,14 @@ input UserDto {
   email: String!
   password: String!
   age: Int
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+  age: Int
+  id: String!
 }
 
 input CreatePostInput {
