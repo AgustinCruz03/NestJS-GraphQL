@@ -17,10 +17,7 @@ import { User } from 'src/user/user.entity';
 export class PostResolver {
   constructor(private readonly postService: PostService) {}
 
-  @Mutation(() => Post)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
-    return this.postService.create(createPostInput);
-  }
+  
 
   @Query(() => [Post], { name: 'posts' })
   findAll() {
@@ -28,7 +25,7 @@ export class PostResolver {
   }
 
   @Query(() => Post, { name: 'post' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.postService.findOne(id);
   }
   @ResolveField((returns) => User)
@@ -37,12 +34,17 @@ export class PostResolver {
   }
 
   @Mutation(() => Post)
-  updatePost(@Args('updatePostInput') updatePostInput: UpdatePostInput) {
-    return this.postService.update(updatePostInput.id, updatePostInput);
+  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
+    return this.postService.create(createPostInput);
   }
 
   @Mutation(() => Post)
-  removePost(@Args('id', { type: () => Int }) id: number) {
+  updatePost(@Args('updatePostInput') updatePostInput: UpdatePostInput) {
+    return this.postService.update(updatePostInput);
+  }
+
+  @Mutation(() => Post)
+  removePost(@Args('id', { type: () => String }) id: string) {
     return this.postService.remove(id);
   }
 }

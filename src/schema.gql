@@ -23,14 +23,14 @@ type Query {
   users: [User!]!
   user(id: String!): User!
   posts: [Post!]!
-  post(id: Int!): Post!
+  post(id: String!): Post!
 }
 
 type Mutation {
   createUser(user: UserDto!): User!
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(updatePostInput: UpdatePostInput!): Post!
-  removePost(id: Int!): Post!
+  removePost(id: String!): Post!
 }
 
 input UserDto {
@@ -50,5 +50,5 @@ input UpdatePostInput {
   title: String
   description: String
   userId: String
-  id: Int!
+  id: String!
 }

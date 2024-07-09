@@ -27,15 +27,30 @@ export class PostService {
     return await this.postRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  async findOne(id: string) {
+    return await this.postRepository.findOne({where:{id}});
   }
 
-  update(id: number, updatePostInput: UpdatePostInput) {
-    return `This action updates a #${id} post`;
+  async update(updatePostInput: UpdatePostInput) {
+    const {id, ...updateObject} = updatePostInput 
+    const postExist = await this.postRepository.findOne({where:{id}})
+    
+    if(!postExist){
+      throw new BadRequestException('No existe ese post')
+    }
+    await this.postRepository.update(id,updateObject)
+    
+    return await this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} post`;
+  async remove(id: string) {
+    const postExist = await this.postRepository.findOne({where:{id}})
+
+    if(!postExist){
+      throw new BadRequestException('No existe ese post')
+    }
+
+    await this.postRepository.delete(id)
+    return postExist;
   }
 }

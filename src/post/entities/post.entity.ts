@@ -11,9 +11,11 @@ export class Post {
   @PrimaryGeneratedColumn('uuid')
   @Field()
   id: string = uuid();
+  
   @Column()
   @Field()
   title: string;
+
   @Column()
   @Field()
   description: string;
