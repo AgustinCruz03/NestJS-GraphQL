@@ -27,14 +27,14 @@ type Query {
 }
 
 type Mutation {
-  createUser(user: UserDto!): User!
+  createUser(user: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   createPost(createPostInput: CreatePostInput!): Post!
   updatePost(updatePostInput: UpdatePostInput!): Post!
   removePost(id: String!): Post!
 }
 
-input UserDto {
+input CreateUserInput {
   username: String!
   email: String!
   password: String!

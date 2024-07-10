@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 
 @InputType()
-export class UserDto {
+export class CreateUserInput {
   @MaxLength(20)
   @IsString()
   @IsNotEmpty()
